@@ -72,3 +72,7 @@ button:hover {
 .required {
   color: red;
 }
+
+.otp-label {
+  padding-top: 10px; 
+}
