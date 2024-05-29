@@ -63,3 +63,12 @@ button:hover {
   margin-top: 10px;
   color: #555;
 }
+
+.validation-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.required {
+  color: red;
+}

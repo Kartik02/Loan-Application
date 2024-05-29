@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Application</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
     <div class="container">
-      <h1>Loan Application</h1>
-      <form id="loanForm" action="confirm.html" method="GET">
-        <div class="form-group">
-          <label for="fullName">Full Name:</label>
-          <input type="text" id="fullName" name="fullName" required />
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-
-        <div class="form-group">
-          <label for="pan">PAN:</label>
-          <input type="text" id="pan" name="pan" required />
-        </div>
-
-        <div class="form-group">
-          <label for="loanAmount">Loan Amount:</label>
-          <input type="text" id="loanAmount" name="loanAmount" required />
-          <span id="amountInWords"></span>
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
+        <h1>Loan Application Form</h1>
+        <form id="loanForm" action="confirm.html" method="get">
+            <div class="form-group">
+                <label for="fullName">Full Name: <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" required>
+                <div id="fullNameValidationMessage" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email: <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+                <div id="emailValidationMessage" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="pan">PAN: <span class="required">*</span></label>
+                <input type="text" id="pan" name="pan" required>
+                <div id="panValidationMessage" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="loanAmount">Loan Amount: <span class="required">*</span></label>
+                <input type="number" id="loanAmount" name="loanAmount" required>
+                <span id="amountInWords"></span>
+                <div id="loanAmountValidationMessage" class="validation-message"></div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
     </div>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
