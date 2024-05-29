@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmation Page</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="confirmationMessage"></div>
+      <form id="otpForm">
+        <div class="form-group">
+          <label for="userOTP">Enter OTP:</label>
+          <input type="text" id="userOTP" name="userOTP" required />
+        </div>
+        <button type="submit">Validate</button>
+      </form>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      function validateOTP() {
+        const userOTP = document.getElementById("userOTP").value;
+        attempts++;
+
+        if (userOTP == otp) {
+          document.getElementById("otpForm").innerHTML =
+            "<p>Validation Successful!</p>";
+          setTimeout(() => {
+            window.location.href = "https://pixel6.co/";
+          }, 2000);
+        } else {
+          if (attempts >= 3) {
+            document.getElementById("otpForm").innerHTML =
+              "<p>Validation Failed!</p>";
+            setTimeout(() => {
+              window.location.href = "https://pixel6.co/404";
+            }, 2000);
+          } else {
+            alert("Incorrect OTP. Please try again.");
+            document.getElementById("userOTP").value = "";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
