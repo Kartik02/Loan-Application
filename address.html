@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Address Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Address Details</h1>
+        <form id="addressForm">
+            <div class="form-group">
+                <label for="addressFullName">Full Name: <span class="required">*</span></label>
+                <input type="text" id="addressFullName" pattern="[a-zA-Z]{4,} [a-zA-Z]{4,}" title="Please enter full name with at least 4 characters each for first and last name, separated by a space." required>
+            </div>
+            <div class="form-group">
+                <label for="addressLine1">Address Line 1: <span class="required">*</span></label>
+                <input type="text" id="addressLine1" required>
+            </div>
+            <div class="form-group">
+                <label for="addressLine2">Address Line 2 (optional):</label>
+                <input type="text" id="addressLine2">
+            </div>
+            <div class="form-group">
+                <label for="city">City: <span class="required">*</span></label>
+                <input type="text" id="city" pattern="[a-zA-Z\s]{2,}" title="Please enter a valid city name." required>
+            </div>
+            <div class="form-group">
+                <label for="state">State/Province: <span class="required">*</span></label>
+                <input type="text" id="state" pattern="[a-zA-Z\s]{2,}" title="Please enter a valid state/province name." required>
+            </div>
+            <div class="form-group">
+                <label for="zip">Zip/Postal Code: <span class="required">*</span></label>
+                <input type="text" id="zip" pattern="[0-9]{6}" title="Please enter a valid zip/postal code with 6 digits." required>
+            </div>
+            <div class="form-group">
+                <label for="country">Country: <span class="required">*</span></label>
+                <input type="text" id="country" pattern="[a-zA-Z\s]{2,}" title="Please enter a valid country name." required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
