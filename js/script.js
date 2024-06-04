@@ -12,14 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Generated OTP:', otp);
 
   if (loanForm) {
-      loanForm.addEventListener('submit', function(event) {
-          event.preventDefault();
-          if (validateForm()) {
-              sessionStorage.setItem('userFullName', document.getElementById('fullName').value);
-              sessionStorage.setItem('otp', otp);
-              window.location.href = 'confirm.html';
-          }
-      });
+    loanForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (validateForm()) {
+            const email = document.getElementById('email').value;
+            sessionStorage.setItem('userFullName', document.getElementById('fullName').value);
+            sessionStorage.setItem('otp', otp);
+            window.location.href = `confirm.html?email=${email}`;
+        }
+    });
 
       document.getElementById('loanAmount').addEventListener('input', function() {
           // Limiting Loan Amount to a maximum of 9 digits
@@ -203,17 +204,22 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (window.location.pathname.endsWith('loan-tenure.html')) {
-      const sanctionedAmount = Math.floor(Math.random() * (200000 - 10000 + 1)) + 10000;
-      document.getElementById('sanctionedAmount').value = sanctionedAmount;
+    const sanctionedAmount = Math.floor(Math.random() * (200000 - 10000 + 1)) + 10000;
+    document.getElementById('sanctionedAmount').value = sanctionedAmount;
 
-      const tenureSelect = document.getElementById('tenure');
-      const tenureOptions = getTenureOptions(sanctionedAmount);
+    const minimumTenure = getTenureOptions(sanctionedAmount)[0];
+    const interestRate = 14 / 100 / 12;
+    const emi = (sanctionedAmount * interestRate * Math.pow(1 + interestRate, minimumTenure)) / (Math.pow(1 + interestRate, minimumTenure) - 1);
+    document.getElementById('emi').value = emi.toFixed(2);
 
-      tenureOptions.forEach(option => {
-          const opt = document.createElement('option');
-          opt.value = option;
-          opt.innerText = `${option} months`;
-          tenureSelect.appendChild(opt);
+    const tenureSelect = document.getElementById('tenure');
+    const tenureOptions = getTenureOptions(sanctionedAmount);
+
+    tenureOptions.forEach(option => {
+        const opt = document.createElement('option');
+        opt.value = option;
+        opt.innerText = `${option} months`;
+        tenureSelect.appendChild(opt);
       });
 
       tenureSelect.addEventListener('change', function() {
@@ -244,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Session management for displaying username and logout
-  if (window.location.pathname.endsWith('loan-tenure.html') || window.location.pathname.endsWith('address.html')) {
+  if (window.location.pathname.endsWith('loan-tenure.html') || window.location.pathname.endsWith('confirm.html') || window.location.pathname.endsWith('address.html')) {
       const username = sessionStorage.getItem('userFullName');
       if (username) {
           const userDisplay = document.createElement('div');
